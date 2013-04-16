@@ -1,0 +1,59 @@
+<%= form_for @event, html: { class: "form-horizontal" } do |f| %>
+
+  <div class="control-group">
+    <%= f.label :name, class: 'control-label' %>
+    <div class='controls'>
+      <%= f.text_field :name, class: 'span11' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :url, class: 'control-label' %>
+    <div class='controls'>
+      <%= f.text_field :url, class: 'span11' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :description, class: 'control-label' %>
+    <div class='controls'>
+      <%= f.text_area :description, rows: '15', class: 'span11' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :system_id, 'System', class: 'control-label' %>
+    <div class='controls'>
+      <%= f.grouped_collection_select :system_id, @clients, :systems, :name, :id, :to_s, include_blank: 'Please select...' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :status, class: 'control-label' %>
+    <div class='controls'>
+      <%= f.select :status, Event.statuses, include_blank: true %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :priority, class: 'control-label' %>
+    <div class='controls'>
+      <%= f.select :priority, Event.priorities, include_blank: true %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :target_datetime, class: 'control-label' %>
+    <div class='controls'>
+      <%= f.datetime_select :target_datetime %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :effort, class: 'control-label' %>
+    <div class='controls'>
+      <%= f.number_field :effort %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <div class='controls'>
+      <%= f.submit class: 'btn btn-primary' %> |
+      <%= link_to 'Back', events_path, class: 'btn' %>
+    </div>
+  </div>
+
+<% end %>
